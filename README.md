@@ -51,4 +51,198 @@
 
 
 
-### API description: A list of all classes with their public methods and attributes. Each item should show their docstrings. All parameters (with data types and defaults) should be described. All return values should be described. Do not describe private methods and attributes.
+### API description: 
+
+class Analyzer(builtins.object)
+ |  Analyzer(game)
+ |
+ |  Analyzes the results of a game
+ |
+ |  Attributes:
+ |      _game (Game): The Game object whose results are being analyzed
+ |
+ |  Methods:
+ |      __init__(self, game): initializes an Analyzer object with a Game object
+ |                                                                                                                          
+ |      jackpot(self): counts # of times a jackpot occurred in the game                                                     
+ |                                                                                                                          
+ |      roll_face_counts(self): counts how many times each face value was rolled in each play of the game                   
+ |                                                                                                                          
+ |      combo_count(self): counts distinct combinations of faces rolled in the game                                         
+ |                                                                                                                          
+ |      permutation_count(self): counts distinct permutations of faces rolled in the game                                   
+ |                                                                                                                          
+ |  Methods defined here:                                                                                                   
+ |                                                                                                                          
+ |  __init__(self, game)                                                                                                    
+ |      Initializes an Analyzer object with a Game object                                                                   
+ |                                                                                                                          
+ |      Args:                                                                                                               
+ |          game (Game): Game object whose results are being analyzed                                                       
+ |                                                                                                                          
+ |      Raises:                                                                                                             
+ |          ValueError: Not a valid Game object                                                                             
+ |                                                                                                                          
+ |  combo_count(self)                                                                                                       
+ |      Counts distinct combinations of faces rolled in the game                                                            
+ |                                                                                                                          
+ |      Returns:                                                                                                            
+ |          DataFrame: a DataFrame with counts of the distinct combinations                                                 
+ |                                                                                                                          
+ |  jackpot(self)                                                                                                           
+ |      Counts # of times a jackpot occurred in the game                                                                    
+ |                                                                                                                          
+ |      Returns:                                                                                                            
+ |          int: # of jackpots                                                                                              
+ |                                                                                                                          
+ |  permutation_count(self)                                                                                                 
+ |      Counts distinct permutations of faces rolled in the game                                                            
+ |                                                                                                                          
+ |      Returns:                                                                                                            
+ |          DataFrame: a DataFrame with counts of the distinct permutations                                                 
+ |                                                                                                                          
+ |  roll_face_counts(self)                                                                                                  
+ |      Counts # of times each face value was rolled in each play of the game                                               
+ |                                                                                                                          
+ |      Returns:                                                                                                            
+ |      DataFrame: a DataFrame showing the face counts for each roll                                                        
+ |                                                                                                                          
+ |  ----------------------------------------------------------------------                                                  
+ |  Data descriptors defined here:                                                                                          
+ |                                                                                                                          
+ |  __dict__                                                                                                                
+ |      dictionary for instance variables                                                                                   
+ |                                                                                                                          
+ |  __weakref__                                                                                                             
+ |      list of weak references to the object                                                                               
+
+--------------------------------------------------
+
+class Die(builtins.object)
+ |  Die(faces)
+ |
+ |  Represents a die with adjustable faces/weights
+ |
+ |  Attributes:
+ |      _faces (numpy.ndarray): an array containing unique face values for the die
+ |      _weights (numpy.ndarray): an array containing weights associated with each face
+ |
+ |   Methods:
+ |      __init__(self, faces): initializes a Die object with given faces, and
+ |      checks if input is valid.                                                                                           
+ |                                                                                                                          
+ |      alter_weight(self, face, new_weight): changes the weight of a particular                                            
+ |      face on the die                                                                                                     
+ |                                                                                                                          
+ |      roll(self, times=1): rolls the die a specified number of times, returns                                             
+ |      the outcomes                                                                                                        
+ |                                                                                                                          
+ |      display_state(self): returns the current state of the die, specifically the                                         
+ |      faces and weights                                                                                                   
+ |                                                                                                                          
+ |  Methods defined here:                                                                                                   
+ |                                                                                                                          
+ |  __init__(self, faces)                                                                                                   
+ |      Initializes the Die object with given faces.                                                                        
+ |                                                                                                                          
+ |      Args:                                                                                                               
+ |              faces (numpy.ndarray): an array of face values for the die                                                  
+ |                                                                                                                          
+ |      Raises:                                                                                                             
+ |              TypeError: Faces cannot be converted to a numpy array                                                       
+ |              TypeError: Faces do not contain valid data type                                                             
+ |              ValueError: Faces do not have distinct values                                                               
+ |                                                                                                                          
+ |  alter_weight(self, face, new_weight)                                                                                    
+ |      Alters the weight of a specific face on the die.                                                                    
+ |                                                                                                                          
+ |      Args:                                                                                                               
+ |          face: the face value whose weight needs to be changed                                                           
+ |          new_weight: the new weight value for said face                                                                  
+ |                                                                                                                          
+ |      Raises:                                                                                                             
+ |          IndexError: Specified face is not valid                                                                         
+ |          TypeError: new_weight is not numeric                                                                            
+ |                                                                                                                          
+ |  display_state(self)                                                                                                     
+ |      Returns the current state of the die                                                                                
+ |                                                                                                                          
+ |      Returns:                                                                                                            
+ |          dict: a dictionary containing the faces/weights of the die                                                      
+ |                                                                                                                          
+ |  roll(self, times=1)                                                                                                     
+ |       Rolls the die a specified number of times                                                                          
+ |                                                                                                                          
+ |      Args:                                                                                                               
+ |          times (int): the number of times to roll the die (default is 1)                                                 
+ |                                                                                                                          
+ |      Returns:                                                                                                            
+ |          list: a list of outcomes from rolling the die                                                                   
+ |                                                                                                                          
+ |  ----------------------------------------------------------------------                                                  
+ |  Data descriptors defined here:                                                                                          
+ |                                                                                                                          
+ |  __dict__                                                                                                                
+ |      dictionary for instance variables                                                                                   
+ |                                                                                                                          
+ |  __weakref__                                                                                                             
+ |      list of weak references to the object                                                                               
+
+--------------------------------------------------
+
+class Game(builtins.object)
+ |  Game(dice)
+ |
+ |  Represents a game that involves rolling multiple dice.
+ |
+ |  Attributes:
+ |      _dice (list): a list of Die objects to be used in the game
+ |      _results (dict): a dictionary storing results of game plays
+ |
+ |  Methods:
+ |      __init__(self, dice): initializes a Game object with a list of Die objects
+ |                                                                                                                          
+ |      play(self, num_rolls): plays the game by rolling dice a specified                                                   
+ |      number of times                                                                                                     
+ |                                                                                                                          
+ |      show_results(self, format='wide'): returns results of the most recent                                               
+ |      play, in wide or narrow format                                                                                      
+ |                                                                                                                          
+ |  Methods defined here:                                                                                                   
+ |                                                                                                                          
+ |  __init__(self, dice)                                                                                                    
+ |      Initializes Game object with a list of Die objects                                                                  
+ |                                                                                                                          
+ |      Args:                                                                                                               
+ |          dice (list): a list of Die objects to be used in the game                                                       
+ |                                                                                                                          
+ |  play(self, num_rolls)                                                                                                   
+ |      Plays the game by rolling dice a given number of times                                                              
+ |                                                                                                                          
+ |      Args:                                                                                                               
+ |          num_rolls (int): # of times to roll all dice                                                                    
+ |                                                                                                                          
+ |  show_results(self, format='wide')                                                                                       
+ |      Returns results of the most recent play, in wide or narrow format                                                   
+ |                                                                                                                          
+ |      Args:                                                                                                               
+ |          format (str): format of the results                                                                             
+ |                                                                                                                          
+ |      Returns:                                                                                                            
+ |          DataFrame or dict: results of most recent play                                                                  
+ |                                                                                                                          
+ |      Raises:                                                                                                             
+ |          ValueError: Invalid format option is provided                                                                   
+ |                                                                                                                          
+ |  ----------------------------------------------------------------------                                                  
+ |  Data descriptors defined here:                                                                                          
+ |                                                                                                                          
+ |  __dict__                                                                                                                
+ |      dictionary for instance variables                                                                                   
+ |                                                                                                                          
+ |  __weakref__                                                                                                             
+ |      list of weak references to the object                                                                               
+
+--------------------------------------------------
+
+
