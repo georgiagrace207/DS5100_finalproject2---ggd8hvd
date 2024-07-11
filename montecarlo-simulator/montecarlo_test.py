@@ -24,10 +24,10 @@ class GameTest(unittest.TestCase):
 
         def setUp(self):
             with open('english_letters.txt', 'r') as file:
-                faces1 = file.read().strip().split()
+                faces = file.read().strip().split()
             with open('scrabble_words.txt', 'r') as file:
                 outcomes = file.read().strip().split()
-            self.dice = [Die(faces1)]
+            self.dice = [Die(faces)]
             self.game = Game(self.dice, outcomes=outcomes)
 
         def test_game_play(self):
@@ -45,8 +45,8 @@ class AnalyzerTest(unittest.TestCase):
 
     def setUp(self):
         with open('english_letters.txt', 'r') as file:
-            faces1 = file.read().strip().split()
-        self.dice = [Die(faces1)]
+            faces = file.read().strip().split()
+        self.dice = [Die(faces)]
         self.game = Game(self.dice)
         self.analyzer = Analyzer(self.game)
 
